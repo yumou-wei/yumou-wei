@@ -4,35 +4,35 @@
         A[Get url] --> B(Match 'div' elements);
         B --> C(Join matches);
         C --> D(Remove HTML tags);
-        D --> E[Cleaned article content];
     end
 
     subgraph tokenize_text
-        E --> F{Tokenise cleaned article content};
-        F --> G(Decode HTML entities);
-        F --> H(Lowercase text);
-        F --> I(Remove punctuation);
-        F --> J(Remove stop words);
+        D --> E{Tokenise cleaned article content};
+        E --> F(Decode HTML entities);
+        E --> G(Lowercase text);
+        E --> H(Remove punctuation);
+        E --> I(Remove stop words);
     end
 
     subgraph lemmatize_tokens
-        J --> K(Word Net Lemmatizer);
+        I --> J(Word Net Lemmatizer);
     end
 
     subgraph return_sentiment_df
-        K --> L{Sentiment Intensity Analyzer};
-        L --> M(Positive tokens);
-        L --> N(Negative tokens);
-        L --> O(Neutral tokens);
-        L --> P[Compound/average score];
-        P --> Q(Sentiment DataFrame);
-        M --> Q;
-        N --> Q;
-        O --> Q;
+        J --> K{Sentiment Intensity Analyzer};
+        K --> L(Positive tokens);
+        K --> M(Negative tokens);
+        K --> N(Neutral tokens);
+        K --> O[Compound/average score];
+        O --> P(Sentiment DataFrame);
+        L --> P;
+        M --> P;
+        N --> P;
     end
 
     subgraph generate_word_cloud
-        P --> R(Join lemmatized tokens)
-        R --> S[Plot Word Cloud]
+        P --> Q(Join lemmatized tokens);
+        Q --> R(Plot Word Cloud);
     end
+
 ```
